@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIAA ISTC Workshop 2026 | Advancing Aerospace Through Intelligent Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0A1628;
+    --navy2:   #0F2040;
+    --blue:    #1E3A5F;
+    --cyan:    #00C8FF;
+    --cyan2:   #0096CC;
+    --gold:    #FFD700;
+    --white:   #F0F4FF;
+    --muted:   #8BA4C0;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(0,200,255,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.15em;
+    color: var(--cyan); text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 6rem 2rem 4rem;
+    background: radial-gradient(ellipse at 60% 40%, #0F2A50 0%, var(--navy) 65%);
+  }
+
+  /* Star field */
+  .stars {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .star {
+    position: absolute; border-radius: 50%;
+    background: white; opacity: 0;
+    animation: twinkle var(--dur, 3s) var(--delay, 0s) infinite alternate;
+  }
+  @keyframes twinkle { 0%{opacity:0.1} 100%{opacity:var(--max-op,0.7)} }
+
+  /* Radar SVG */
+  .radar-wrap {
+    position: absolute; right: -4vw; top: 50%; transform: translateY(-50%);
+    width: min(520px, 55vw); opacity: 0.18;
+    pointer-events: none;
+  }
+  .radar-sweep {
+    transform-origin: 50% 50%;
+    animation: sweep 4s linear infinite;
+  }
+  @keyframes sweep { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .radar-blip {
+    animation: blink 4s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%,100%{opacity:0} 50%{opacity:1}
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px;
+  }
+  .hero-eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em;
+    color: var(--cyan); text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--cyan);
+  }
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 900; line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+  h1 span { color: var(--cyan); }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); font-weight: 300;
+    max-width: 520px; margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem;
+  }
+  .meta-chip {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,200,255,0.08); border: 1px solid var(--card-border);
+    border-radius: 6px; padding: 0.5rem 1rem;
+    font-size: 0.85rem; font-weight: 500;
+  }
+  .meta-chip svg { color: var(--cyan); }
+  .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--cyan); color: var(--navy);
+    font-family: 'Orbitron', sans-serif; font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.85rem 2rem; border: none; border-radius: 4px;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #33d4ff; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--cyan);
+    font-family: 'Orbitron', sans-serif; font-weight: 600;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--cyan); border-radius: 4px;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(0,200,255,0.08); }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700; margin-bottom: 2.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── THEMES ── */
+  #themes { background: var(--navy2); }
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.25rem;
+  }
+  .theme-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .theme-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--cyan), transparent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .theme-card:hover { border-color: var(--cyan2); transform: translateY(-3px); }
+  .theme-card:hover::before { opacity: 1; }
+  .theme-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(0,200,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .theme-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .theme-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── SCHEDULE ── */
+  #schedule { background: var(--navy); }
+  .day-tabs {
+    display: flex; gap: 0; margin-bottom: 2rem;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .day-tab {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); padding: 0.75rem 1.75rem;
+    cursor: pointer; border: none; background: none;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .day-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .day-tab:hover:not(.active) { color: var(--white); }
+  .day-panel { display: none; }
+  .day-panel.active { display: block; }
+  .sched-row {
+    display: grid; grid-template-columns: 130px 1fr auto;
+    gap: 1rem; align-items: start;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    border-left: 2px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+    margin-bottom: 0.3rem;
+  }
+  .sched-row:hover { background: var(--card-bg); border-left-color: var(--cyan); }
+  .sched-row.highlight {
+    background: rgba(0,200,255,0.06);
+    border-left-color: var(--cyan);
+  }
+  .sched-row.break-row { opacity: 0.5; }
+  .sched-time {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem; color: var(--cyan);
+    font-weight: 600; letter-spacing: 0.05em;
+    padding-top: 0.1rem;
+    white-space: nowrap;
+  }
+  .sched-event { font-size: 0.9rem; color: var(--white); }
+  .sched-event small { display: block; color: var(--muted); font-size: 0.78rem; margin-top: 0.2rem; }
+  .sched-who {
+    font-size: 0.75rem; color: var(--muted);
+    text-align: right; white-space: nowrap; padding-top: 0.15rem;
+  }
+
+  /* ── STUDENT SESSIONS ── */
+  #students {
+    background: linear-gradient(135deg, var(--navy2) 0%, #0A1E3C 100%);
+  }
+  .student-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .student-card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 10px; padding: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .student-card h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--gold);
+  }
+  .student-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3);
+    color: var(--gold); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.75rem; border-radius: 4px;
+    width: fit-content;
+  }
+
+  /* ── LOCATION ── */
+  #location { background: var(--navy); }
+  .location-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .loc-map-placeholder {
+    background: var(--navy2); border: 1px solid var(--card-border);
+    border-radius: 10px; aspect-ratio: 4/3;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem; color: var(--muted);
+    font-size: 0.85rem; position: relative; overflow: hidden;
+  }
+  .loc-map-svg { width: 100%; height: 100%; }
+  .loc-details { display: flex; flex-direction: column; gap: 1.5rem; }
+  .loc-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .loc-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: rgba(0,200,255,0.1); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .loc-text h4 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 0.3rem;
+  }
+  .loc-text p { font-size: 0.9rem; color: var(--white); }
+  .loc-text small { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── SPEAKERS ── */
+  #speakers { background: var(--navy2); }
+  .speaker-row {
+    display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .org-block {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    border-radius: 8px; padding: 1.25rem 1.75rem;
+    flex: 1; min-width: 200px;
+  }
+  .org-block h4 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.7rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: 0.75rem;
+  }
+  .org-block ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .org-block li { font-size: 0.88rem; color: var(--muted); }
+  .org-block li span { color: var(--white); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060F1E; padding: 3rem 2rem;
+    border-top: 1px solid var(--card-border);
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700;
+    color: var(--cyan); letter-spacing: 0.2em;
+    margin-bottom: 0.5rem;
+  }
+  footer p { color: var(--muted); font-size: 0.82rem; }
+
+  /* ── DIVIDER ── */
+  .cyan-rule {
+    border: none; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.3; margin: 1rem 0 2.5rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .radar-wrap { display: none; }
+    .location-layout, .student-grid { grid-template-columns: 1fr; }
+    .sched-row { grid-template-columns: 100px 1fr; }
+    .sched-who { display: none; }
+    section { padding: 3.5rem 1.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .radar-sweep, .star { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AIAA · ISTC 2026</div>
+  <ul class="nav-links">
+    <li><a href="#themes">Themes</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#students">Students</a></li>
+    <li><a href="#speakers">Speakers</a></li>
+    <li><a href="#location">Location</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Radar animation -->
+  <div class="radar-wrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <!-- Rings -->
+      <circle cx="200" cy="200" r="190" fill="none" stroke="#00C8FF" stroke-width="0.8" opacity="0.6"/>
+      <circle cx="200" cy="200" r="140" fill="none" stroke="#00C8FF" stroke-width="0.6" opacity="0.5"/>
+      <circle cx="200" cy="200" r="90" fill="none" stroke="#00C8FF" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="200" cy="200" r="45" fill="none" stroke="#00C8FF" stroke-width="0.5" opacity="0.3"/>
+      <!-- Cross hairs -->
+      <line x1="200" y1="10" x2="200" y2="390" stroke="#00C8FF" stroke-width="0.4" opacity="0.3"/>
+      <line x1="10" y1="200" x2="390" y2="200" stroke="#00C8FF" stroke-width="0.4" opacity="0.3"/>
+      <line x1="55" y1="55" x2="345" y2="345" stroke="#00C8FF" stroke-width="0.3" opacity="0.2"/>
+      <line x1="345" y1="55" x2="55" y2="345" stroke="#00C8FF" stroke-width="0.3" opacity="0.2"/>
+
+      <!-- Sweep gradient & arm -->
+      <defs>
+        <radialGradient id="sweepGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00C8FF" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#00C8FF" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <g class="radar-sweep">
+        <path d="M200,200 L390,200 A190,190 0 0,0 200,10 Z"
+              fill="url(#sweepGrad)" opacity="0.35"/>
+        <line x1="200" y1="200" x2="200" y2="10" stroke="#00C8FF" stroke-width="1.5" opacity="0.9"/>
+      </g>
+
+      <!-- Blips -->
+      <circle class="radar-blip" cx="310" cy="130" r="4" fill="#00C8FF" opacity="0.9"
+              style="animation-delay:1.2s"/>
+      <circle class="radar-blip" cx="150" cy="270" r="3" fill="#FFD700" opacity="0.9"
+              style="animation-delay:2.8s"/>
+      <circle class="radar-blip" cx="260" cy="300" r="3.5" fill="#00C8FF" opacity="0.7"
+              style="animation-delay:0.5s"/>
+      <circle cx="200" cy="200" r="3" fill="#00C8FF" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">AIAA Intelligent Systems Technical Committee</div>
+    <h1>Advancing Aerospace<br>Through <span>Intelligent Systems</span></h1>
+    <p class="hero-sub">
+      Two days of technical exchange — member briefs, expert panels, spirited breakouts, 
+      and student competition — bringing together academia, government, and industry around 
+      the future of autonomous and AI-enabled aerospace.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        August 12–13, 2026
+      </div>
+      <div class="meta-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Dayton, Ohio
+      </div>
+      <div class="meta-chip">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        $75 Landing Fee · Lunch Day 1
+      </div>
+    </div>
+    <div class="cta-group">
+      <a href="#schedule" class="btn-primary">View Schedule</a>
+      <a href="#location" class="btn-outline">Location & Logistics</a>
+    </div>
+  </div>
+</section>
+
+<!-- THEMES -->
+<section id="themes">
+  <div class="container">
+    <div class="section-label">Workshop Focus Areas</div>
+    <h2>Technical Themes</h2>
+    <hr class="cyan-rule">
+    <div class="themes-grid">
+      <div class="theme-card">
+        <div class="theme-icon">🤖</div>
+        <h3>Autonomy at Scale</h3>
+        <p>Deploying autonomous systems across complex multi-domain environments, from edge platforms to enterprise missions.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">🧠</div>
+        <h3>Human Interaction &amp; Tasking</h3>
+        <p>Human-machine teaming, trust calibration, and interface design for operator-autonomous system collaboration.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">🛡️</div>
+        <h3>Counter-UAS</h3>
+        <p>Intelligent detection, tracking, and neutralization strategies for uncrewed aerial threats in contested airspace.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">📡</div>
+        <h3>Precision Navigation</h3>
+        <p>PNT robustness in GPS-denied and contested environments — multi-modal sensing, fusion, and resilient architectures.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">⚙️</div>
+        <h3>AI's Impact on Workforce</h3>
+        <p>Responsible AI adoption, transition from academia to government and industry, and the evolving human role in intelligent systems.</p>
+      </div>
+      <div class="theme-card">
+        <div class="theme-icon">🔗</div>
+        <h3>Multi-Domain Intelligent Systems</h3>
+        <p>Cross-cutting IS research spanning air, space, land, sea, and cyber — interoperability, federation, and command architectures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <div class="section-label">Two-Day Program</div>
+    <h2>Event Schedule</h2>
+    <hr class="cyan-rule">
+
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="showDay('day1', this)">Day 1 — Wed, Aug 12</button>
+      <button class="day-tab" onclick="showDay('day2', this)">Day 2 — Thurs, Aug 13</button>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-panel active" id="day1">
+      <div class="sched-row highlight">
+        <div class="sched-time">08:00 – 08:30</div>
+        <div class="sched-event">ISTC Update &amp; Workshop Overview<small>Opening remarks, breakout previews, and committee introductions</small></div>
+        <div class="sched-who">Justin / Jay</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">08:30 – 10:30</div>
+        <div class="sched-event">Member Briefs<small>3-minute rapid briefs · 1–2 slides per presenter · Drop-off breakout choice</small></div>
+        <div class="sched-who">All Members</div>
+      </div>
+      <div class="sched-row break-row">
+        <div class="sched-time">10:30 – 10:40</div>
+        <div class="sched-event">Break</div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">10:40 – 11:45</div>
+        <div class="sched-event">AFRL / SpaceWERX Brief<small>Status update · 1–3 year research horizon</small></div>
+        <div class="sched-who">Sean</div>
+      </div>
+      <div class="sched-row break-row">
+        <div class="sched-time">11:45 – 12:45</div>
+        <div class="sched-event">Lunch &amp; Student Poster Session</div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row highlight">
+        <div class="sched-time">12:45 – 13:00</div>
+        <div class="sched-event">Student Poster Awards<small>Gather breakout topic selections</small></div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">13:00 – 14:00</div>
+        <div class="sched-event">NASA Brief<small>Natasha / NASA Glenn / Saptarshi</small></div>
+        <div class="sched-who">Jay</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">14:00 – 15:00</div>
+        <div class="sched-event">AFRL SBIR / STTR Office Brief</div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row break-row">
+        <div class="sched-time">15:00 – 15:15</div>
+        <div class="sched-event">Optional Break</div>
+        <div class="sched-who">Isaac</div>
+      </div>
+      <div class="sched-row highlight">
+        <div class="sched-time">15:15 – 16:15</div>
+        <div class="sched-event">Industry Panel<small>IS4S · Northrop Grumman · Boeing · Lockheed Martin</small></div>
+        <div class="sched-who">Raj</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">16:15 – 17:00</div>
+        <div class="sched-event">Student Poster Viewing</div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">16:30 – 18:30</div>
+        <div class="sched-event">ISTC Member Meeting</div>
+        <div class="sched-who">Justin</div>
+      </div>
+      <div class="sched-row break-row">
+        <div class="sched-time">18:30 – 18:45</div>
+        <div class="sched-event">Transit to Social Event</div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row highlight">
+        <div class="sched-time">18:45 – 20:30</div>
+        <div class="sched-event">Social Dinner</div>
+        <div class="sched-who">Sean</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">20:30 – 22:00</div>
+        <div class="sched-event">Century Bar</div>
+        <div class="sched-who"></div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-panel" id="day2">
+      <div class="sched-row highlight">
+        <div class="sched-time">09:00 – 09:15</div>
+        <div class="sched-event">Intro &amp; Breakout Grouping</div>
+        <div class="sched-who">Jay / Isaac</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">09:15 – 10:30</div>
+        <div class="sched-event">Breakout Sessions<small>
+          Theme 1: Autonomy at Scale<br>
+          Theme 2: Human Interaction &amp; Tasking<br>
+          Theme 3: Anti-Autonomy / Counter-UAS<br>
+          Theme 4: Precision Navigation &amp; PNT<br>
+          Theme 5: LLM / GAI &amp; Workforce<br>
+          Open: Other IS / Autonomy Topics
+        </small></div>
+        <div class="sched-who">Multiple Groups</div>
+      </div>
+      <div class="sched-row break-row">
+        <div class="sched-time">10:30 – 10:45</div>
+        <div class="sched-event">Break</div>
+        <div class="sched-who"></div>
+      </div>
+      <div class="sched-row highlight">
+        <div class="sched-time">10:45 – 11:45</div>
+        <div class="sched-event">Breakout Reporting<small>Each group presents findings and key takeaways to the full audience</small></div>
+        <div class="sched-who">Each Group</div>
+      </div>
+      <div class="sched-row">
+        <div class="sched-time">11:45 – 12:30</div>
+        <div class="sched-event">ISTC Discussion Items &amp; Closing</div>
+        <div class="sched-who">Jay / Justin</div>
+      </div>
+      <div class="sched-row break-row">
+        <div class="sched-time">12:30</div>
+        <div class="sched-event">End of Workshop</div>
+        <div class="sched-who"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STUDENT SESSIONS -->
+<section id="students">
+  <div class="container">
+    <div class="section-label">Next Generation</div>
+    <h2>Student Sessions</h2>
+    <hr class="cyan-rule">
+    <div class="student-grid">
+      <div class="student-card">
+        <div class="badge">Competition</div>
+        <h3>Poster Session</h3>
+        <p>Students present original research across the workshop's intelligent systems themes. Posters are displayed during lunch on Day 1, with dedicated viewing time in the afternoon. This is a chance to engage directly with government, industry, and academic attendees on your work.</p>
+      </div>
+      <div class="student-card">
+        <div class="badge">Awards</div>
+        <h3>Judging Competition</h3>
+        <p>A panel of ISTC members and guest judges evaluates student posters across criteria including technical merit, relevance to aerospace IS challenges, and presentation quality. Awards are announced at the Student Poster Awards ceremony following lunch on Day 1. No registration fee for students.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section id="speakers">
+  <div class="container">
+    <div class="section-label">Confirmed &amp; Invited</div>
+    <h2>Presenters &amp; Panelists</h2>
+    <hr class="cyan-rule">
+    <div class="speaker-row">
+      <div class="org-block">
+        <h4>Government / Research</h4>
+        <ul>
+          <li><span>AFRL / SpaceWERX</span> — Research horizon brief</li>
+          <li><span>AFRL SBIR/STTR Office</span> — Transition funding brief</li>
+          <li><span>NASA Glenn</span> — Awaiting approval</li>
+        </ul>
+      </div>
+      <div class="org-block">
+        <h4>Industry Panel</h4>
+        <ul>
+          <li><span>Boeing</span> — JP · Confirmed</li>
+          <li><span>IS4S</span> — JR · Confirmed</li>
+          <li><span>Northrop Grumman</span> — WR · Invited</li>
+          <li><span>Lockheed Martin</span> — CE · Invited</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:0.82rem; color:var(--muted);">Speaker lineup subject to change. Briefings cover current programs, 1–3 year research horizons, and workforce/transition perspectives.</p>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="container">
+    <div class="section-label">Venue &amp; Logistics</div>
+    <h2>Getting There</h2>
+    <hr class="cyan-rule">
+    <div class="location-layout">
+      <!-- SVG Map illustration of Dayton area -->
+      <div class="loc-map-placeholder">
+        <svg class="loc-map-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="300" fill="#0F2040"/>
+          <!-- Grid lines -->
+          <g stroke="#1E3A5F" stroke-width="1" opacity="0.6">
+            <line x1="0" y1="60" x2="400" y2="60"/>
+            <line x1="0" y1="120" x2="400" y2="120"/>
+            <line x1="0" y1="180" x2="400" y2="180"/>
+            <line x1="0" y1="240" x2="400" y2="240"/>
+            <line x1="80" y1="0" x2="80" y2="300"/>
+            <line x1="160" y1="0" x2="160" y2="300"/>
+            <line x1="240" y1="0" x2="240" y2="300"/>
+            <line x1="320" y1="0" x2="320" y2="300"/>
+          </g>
+          <!-- Road network -->
+          <g stroke="#1E5080" stroke-width="3" fill="none" opacity="0.8">
+            <!-- Main St vertical -->
+            <line x1="200" y1="0" x2="200" y2="300"/>
+            <!-- Cross streets -->
+            <line x1="0" y1="150" x2="400" y2="150"/>
+            <line x1="0" y1="90" x2="400" y2="90"/>
+            <line x1="0" y1="210" x2="400" y2="210"/>
+          </g>
+          <!-- Highways -->
+          <g stroke="#00C8FF" stroke-width="4" fill="none" opacity="0.4">
+            <path d="M 0 200 Q 100 190 200 200 Q 300 210 400 200"/>
+            <path d="M 250 0 L 250 300"/>
+          </g>
+          <!-- Highway labels -->
+          <text x="355" y="188" fill="#00C8FF" font-size="10" font-family="Orbitron,monospace" opacity="0.7">I-75</text>
+          <text x="255" y="20" fill="#00C8FF" font-size="10" font-family="Orbitron,monospace" opacity="0.7">I-675</text>
+          <!-- City blocks -->
+          <g fill="#1E3A5F" opacity="0.5">
+            <rect x="90" y="100" width="50" height="30" rx="2"/>
+            <rect x="90" y="160" width="50" height="30" rx="2"/>
+            <rect x="160" y="100" width="25" height="25" rx="2"/>
+            <rect x="215" y="160" width="40" height="25" rx="2"/>
+            <rect x="270" y="100" width="35" height="35" rx="2"/>
+            <rect x="130" y="220" width="45" height="25" rx="2"/>
+          </g>
+          <!-- Miami River -->
+          <path d="M 120 0 Q 140 75 130 150 Q 120 225 140 300" stroke="#004060" stroke-width="8" fill="none" opacity="0.6"/>
+          <text x="85" y="75" fill="#0096CC" font-size="9" font-family="Inter,sans-serif" opacity="0.7">Great Miami R.</text>
+
+          <!-- Venue pin -->
+          <g transform="translate(200, 155)">
+            <circle r="18" fill="#00C8FF" opacity="0.15"/>
+            <circle r="10" fill="#00C8FF" opacity="0.3"/>
+            <circle r="5" fill="#00C8FF"/>
+            <!-- Pulse ring -->
+            <circle r="18" fill="none" stroke="#00C8FF" stroke-width="1.5" opacity="0.6">
+              <animate attributeName="r" values="10;22;10" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.8;0;0.8" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Venue label -->
+          <rect x="110" y="175" width="170" height="28" rx="4" fill="#0A1628" opacity="0.9"/>
+          <text x="195" y="193" fill="#00C8FF" font-size="10" font-family="Orbitron,monospace" text-anchor="middle" font-weight="600">Digital Transformation Ctr</text>
+
+          <!-- Compass -->
+          <g transform="translate(370,30)">
+            <circle r="16" fill="#0A1628" stroke="#1E3A5F" stroke-width="1"/>
+            <text x="0" y="-6" fill="#00C8FF" font-size="9" font-family="Orbitron,monospace" text-anchor="middle">N</text>
+            <polygon points="0,-12 3,-2 0,4 -3,-2" fill="#00C8FF" opacity="0.7"/>
+          </g>
+
+          <!-- Label: Dayton OH -->
+          <text x="20" y="285" fill="#8BA4C0" font-size="11" font-family="Orbitron,monospace" font-weight="600">DAYTON, OHIO</text>
+        </svg>
+      </div>
+
+      <div class="loc-details">
+        <div class="loc-item">
+          <div class="loc-icon">📍</div>
+          <div class="loc-text">
+            <h4>Venue</h4>
+            <p>Digital Transformation Center</p>
+            <small>1520 S Main St Suite 214<br>Dayton, OH 45409</small>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">💳</div>
+          <div class="loc-text">
+            <h4>Registration Fee</h4>
+            <p>$75 — Landing Fee</p>
+            <small>Includes lunch on Day 1 · No fee for students</small>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">🏨</div>
+          <div class="loc-text">
+            <h4>Accommodations</h4>
+            <p>Hotel options nearby</p>
+            <small>Marriott properties available · Details forthcoming</small>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">✈️</div>
+          <div class="loc-text">
+            <h4>Nearest Airport</h4>
+            <p>Dayton International Airport (DAY)</p>
+            <small>~20 min from venue</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AIAA · ISTC Workshop 2026</div>
+  <p style="margin-top:0.4rem;">August 12–13 · Dayton, Ohio · Digital Transformation Center</p>
+  <p style="margin-top:1.5rem; font-size:0.75rem; opacity:0.5;">
+    AIAA Intelligent Systems Technical Committee · Advancing Aerospace Through Intelligent Systems
+  </p>
+</footer>
+
+<script>
+  // Generate stars
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 2.5 + 0.5;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      top:${Math.random()*100}%; left:${Math.random()*100}%;
+      --dur:${(Math.random()*4+2).toFixed(1)}s;
+      --delay:${(Math.random()*5).toFixed(1)}s;
+      --max-op:${(Math.random()*0.6+0.1).toFixed(2)};
+    `;
+    starsEl.appendChild(s);
+  }
+
+  // Day tab switching
+  function showDay(id, btn) {
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.day-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>

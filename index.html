@@ -19,6 +19,7 @@
     --muted:   #8BA4C0;
     --card-bg: rgba(255,255,255,0.04);
     --card-border: rgba(0,200,255,0.15);
+    --green: #00C853;
   }
 
   html { scroll-behavior: smooth; }
@@ -139,6 +140,15 @@
     display: inline-block;
   }
   .btn-primary:hover { background: #33d4ff; transform: translateY(-1px); }
+  .btn-register {
+    background: var(--green); color: var(--navy);
+    font-family: 'Orbitron', sans-serif; font-weight: 700;
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.85rem 2rem; border: none; border-radius: 4px;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
   .btn-outline {
     background: transparent; color: var(--cyan);
     font-family: 'Orbitron', sans-serif; font-weight: 600;
@@ -438,7 +448,8 @@
       </div>
     </div>
     <div class="cta-group">
-      <a href="#schedule" class="btn-primary">View Schedule</a>
+      <a href="" class="btn-register">Register HERE</a>
+      <a href="#schedule" class="btn-outline">View Schedule</a>
       <a href="#location" class="btn-outline">Location & Logistics</a>
     </div>
   </div>
@@ -502,77 +513,62 @@
       <div class="sched-row highlight">
         <div class="sched-time">08:00 – 08:30</div>
         <div class="sched-event">ISTC Update &amp; Workshop Overview<small>Opening remarks, breakout previews, and committee introductions</small></div>
-        <div class="sched-who">Justin / Jay</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">08:30 – 10:30</div>
         <div class="sched-event">Member Briefs<small>3-minute rapid briefs · 1–2 slides per presenter · Drop-off breakout choice</small></div>
-        <div class="sched-who">All Members</div>
       </div>
       <div class="sched-row break-row">
         <div class="sched-time">10:30 – 10:40</div>
-        <div class="sched-event">Break</div>
-        <div class="sched-who"></div>
+        <div class="sched-event">Networking Break</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">10:40 – 11:45</div>
         <div class="sched-event">AFRL / SpaceWERX Brief<small>Status update · 1–3 year research horizon</small></div>
-        <div class="sched-who">Sean</div>
       </div>
       <div class="sched-row break-row">
         <div class="sched-time">11:45 – 12:45</div>
         <div class="sched-event">Lunch &amp; Student Poster Session</div>
-        <div class="sched-who"></div>
       </div>
       <div class="sched-row highlight">
         <div class="sched-time">12:45 – 13:00</div>
         <div class="sched-event">Student Poster Awards<small>Gather breakout topic selections</small></div>
-        <div class="sched-who"></div>
       </div>
       <div class="sched-row">
         <div class="sched-time">13:00 – 14:00</div>
         <div class="sched-event">NASA Brief<small>Natasha / NASA Glenn / Saptarshi</small></div>
-        <div class="sched-who">Jay</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">14:00 – 15:00</div>
         <div class="sched-event">AFRL SBIR / STTR Office Brief</div>
-        <div class="sched-who"></div>
       </div>
       <div class="sched-row break-row">
         <div class="sched-time">15:00 – 15:15</div>
-        <div class="sched-event">Optional Break</div>
-        <div class="sched-who">Isaac</div>
+        <div class="sched-event">Networking Break</div>
       </div>
       <div class="sched-row highlight">
         <div class="sched-time">15:15 – 16:15</div>
         <div class="sched-event">Industry Panel<small>IS4S · Northrop Grumman · Boeing · Lockheed Martin</small></div>
-        <div class="sched-who">Raj</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">16:15 – 17:00</div>
         <div class="sched-event">Student Poster Viewing</div>
-        <div class="sched-who"></div>
       </div>
       <div class="sched-row">
         <div class="sched-time">16:30 – 18:30</div>
         <div class="sched-event">ISTC Member Meeting</div>
-        <div class="sched-who">Justin</div>
       </div>
       <div class="sched-row break-row">
         <div class="sched-time">18:30 – 18:45</div>
         <div class="sched-event">Transit to Social Event</div>
-        <div class="sched-who"></div>
       </div>
       <div class="sched-row highlight">
         <div class="sched-time">18:45 – 20:30</div>
-        <div class="sched-event">Social Dinner</div>
-        <div class="sched-who">Sean</div>
+        <div class="sched-event">Social Dinner, location TBA</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">20:30 – 22:00</div>
         <div class="sched-event">Century Bar</div>
-        <div class="sched-who"></div>
       </div>
     </div>
 
@@ -581,7 +577,6 @@
       <div class="sched-row highlight">
         <div class="sched-time">09:00 – 09:15</div>
         <div class="sched-event">Intro &amp; Breakout Grouping</div>
-        <div class="sched-who">Jay / Isaac</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">09:15 – 10:30</div>
@@ -597,23 +592,19 @@
       </div>
       <div class="sched-row break-row">
         <div class="sched-time">10:30 – 10:45</div>
-        <div class="sched-event">Break</div>
-        <div class="sched-who"></div>
+        <div class="sched-event">NetworkingBreak</div>
       </div>
       <div class="sched-row highlight">
         <div class="sched-time">10:45 – 11:45</div>
         <div class="sched-event">Breakout Reporting<small>Each group presents findings and key takeaways to the full audience</small></div>
-        <div class="sched-who">Each Group</div>
       </div>
       <div class="sched-row">
         <div class="sched-time">11:45 – 12:30</div>
         <div class="sched-event">ISTC Discussion Items &amp; Closing</div>
-        <div class="sched-who">Jay / Justin</div>
       </div>
       <div class="sched-row break-row">
         <div class="sched-time">12:30</div>
         <div class="sched-event">End of Workshop</div>
-        <div class="sched-who"></div>
       </div>
     </div>
   </div>
@@ -650,22 +641,20 @@
       <div class="org-block">
         <h4>Government / Research</h4>
         <ul>
-          <li><span>AFRL / SpaceWERX</span> — Research horizon brief</li>
-          <li><span>AFRL SBIR/STTR Office</span> — Transition funding brief</li>
-          <li><span>NASA Glenn</span> — Awaiting approval</li>
+          <li><span>AFRL / SpaceWERX</span></li>
+          <li><span>NASA </span></li>
         </ul>
       </div>
       <div class="org-block">
         <h4>Industry Panel</h4>
         <ul>
-          <li><span>Boeing</span> — JP · Confirmed</li>
-          <li><span>IS4S</span> — JR · Confirmed</li>
-          <li><span>Northrop Grumman</span> — WR · Invited</li>
-          <li><span>Lockheed Martin</span> — CE · Invited</li>
+          <li><span>Boeing</span></li>
+          <li><span>IS4S</span></li>
+          <li><span>Northrop Grumman</span></li>
+          <li><span>Lockheed Martin</span></li>
         </ul>
       </div>
     </div>
-    <p style="font-size:0.82rem; color:var(--muted);">Speaker lineup subject to change. Briefings cover current programs, 1–3 year research horizons, and workforce/transition perspectives.</p>
   </div>
 </section>
 
@@ -763,7 +752,7 @@
           <div class="loc-text">
             <h4>Registration Fee</h4>
             <p>$75 — Landing Fee</p>
-            <small>Includes lunch on Day 1 · No fee for students</small>
+            <small>Includes lunch on Day 1 · No fee for student posters</small>
           </div>
         </div>
         <div class="loc-item">

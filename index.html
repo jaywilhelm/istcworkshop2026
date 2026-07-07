@@ -343,6 +343,40 @@
   .org-block li span { color: var(--white); font-weight: 500; }
 
   /* ── FOOTER ── */
+  .contact-box {
+    background: transparent;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 0.85rem 1.5rem;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+  .contact-box h4 {
+    display: inline;
+    color: var(--cyan);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-right: 0.5rem;
+  }
+  .contact-box p {
+    display: inline;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .contact-box a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0,200,255,0.35);
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .contact-box a:hover {
+    color: var(--white);
+    border-color: var(--white);
+  }
   footer {
     background: #060F1E; padding: 3rem 2rem;
     border-top: 1px solid var(--card-border);
@@ -456,6 +490,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
         $20 Landing Fee Until August 1st - then $75 · Lunch Day 1
       </div>
+    </div>
+    <div class="contact-box">
+      <h4>Questions?</h4>
+      <p>Contact us at <a href="mailto:istcworkshop2026@ohio.edu">istcworkshop2026@ohio.edu</a></p>
     </div>
     <div class="cta-group">
       <a href="https://commerce.cashnet.com/ohioemkt15" class="btn-register">Register HERE</a>

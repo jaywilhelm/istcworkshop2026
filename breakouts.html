@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breakout Results | 2026 ISTC Workshop</title>
+<meta name="description" content="Breakout session results from the 2026 AIAA ISTC Workshop, Dayton, Ohio, August 12-13, 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0e1533; --navy-800:#1b2559; --navy-700:#2a3670;
+    --paper:#f4f5f8; --white:#fff; --teal:#3b8ea5; --slate:#4a7c80; --amber:#dd9c36;
+    --mist:#9aa4c8; --rule:rgba(255,255,255,.13); --ink:#161c33;
+    --display:"Chakra Petch",-apple-system,"Segoe UI",sans-serif;
+    --body:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --wrap:1120px;
+    --panel:#bbd4ff;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--navy-900);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.55}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:linear-gradient(180deg,rgba(43,56,120,.55),rgba(14,21,51,0) 55%),
+      repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 1px,transparent 1px 64px);}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+  .masthead{border-bottom:1px solid var(--rule);padding:34px 0 26px}
+  .brandline{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;font-family:var(--mono);
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+  .brandline .dot{color:var(--teal)}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,6.4vw,4.15rem);line-height:.98;
+    text-transform:uppercase;margin:18px 0 0}
+  h1 .thin{display:block;font-weight:500;color:var(--mist)}
+  .lede{max-width:52ch;margin:20px 0 0;color:#c9d0e6;font-size:1.02rem}
+  .board{padding:8px 0 72px}
+  .board-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-family:var(--mono);
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);padding:30px 0 12px;
+    border-bottom:1px solid var(--rule)}
+  .strip{display:grid;grid-template-columns:1fr auto;gap:8px 28px;align-items:center;padding:26px 4px 24px 0;
+    border-bottom:1px solid var(--rule);text-decoration:none;position:relative;
+    transition:background .18s ease,padding-left .18s ease}
+  .strip::before{content:"";position:absolute;left:-24px;top:0;bottom:0;width:3px;background:var(--accent,var(--teal));
+    transform:scaleY(0);transform-origin:50% 0;transition:transform .22s cubic-bezier(.2,.7,.3,1)}
+  .strip:hover,.strip:focus-visible{background:rgba(255,255,255,.035);padding-left:18px;outline:none}
+  .strip:hover::before,.strip:focus-visible::before{transform:scaleY(1)}
+  .strip:focus-visible{box-shadow:inset 0 0 0 2px var(--teal)}
+  .strip h2{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(1.32rem,3.2vw,2rem);
+    line-height:1.06;margin:0 0 10px;color:var(--white)}
+  .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--mist)}
+  .meta b{color:#dfe4f3;font-weight:500}
+  .gist{margin:10px 0 0;max-width:60ch;color:#c2c9e0;font-size:.95rem}
+  .capture{display:flex;flex-direction:column;gap:8px;align-items:flex-end;min-width:132px}
+  .cap-label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)}
+  .cells{display:flex;gap:5px}
+  .cell{width:24px;height:9px;background:var(--accent,var(--teal));opacity:.92}
+  .cell.off{background:transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+  .back{display:inline-flex;align-items:center;gap:9px;margin:30px 0 0;font-family:var(--mono);font-size:11px;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--mist);text-decoration:none;padding:6px 2px}
+  .back:hover,.back:focus-visible{color:var(--white)}
+  .topbar{background:var(--navy-800);border-top:4px solid var(--accent,var(--teal));padding:30px 32px;margin:18px 0 0;
+    display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px 40px;align-items:start}
+  .topbar h1{margin:0;font-size:clamp(1.7rem,4.4vw,2.85rem)}
+  .roster{font-size:.9rem;line-height:1.7}
+  .roster .rl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mist);
+    display:block;margin-bottom:2px}
+  .roster .rl + span{color:#e4e8f5}
+  .roster .grp{margin-top:14px}
+  .sections{padding:0 0 80px}
+  .sec{background:var(--panel);color:var(--ink);margin-top:20px;padding:28px 32px 30px}
+  .sec-head{display:flex;align-items:center;gap:14px;margin:0 0 20px}
+  .num{flex:none;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;color:#fff;
+    font-family:var(--display);font-weight:700;font-size:1.05rem}
+  .sec-head h3{margin:0;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:1.12rem;
+    letter-spacing:.02em;color:var(--navy-800)}
+  .blk{margin:0 0 20px}
+  .blk:last-child{margin-bottom:0}
+  .blk h4{margin:0 0 9px;font-family:var(--display);font-weight:600;font-size:.94rem;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--accent-ink,var(--teal))}
+  .sec ul{margin:0;padding:0;list-style:none}
+  .sec li{position:relative;padding:0 0 0 20px;margin:0 0 9px}
+  .sec li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:2px;background:var(--accent,var(--teal))}
+  .sec li:last-child{margin-bottom:0}
+  .sec li b{font-weight:600;color:var(--navy-800)}
+  .empty{background:transparent;border:1px dashed rgba(255,255,255,.24);color:var(--mist);padding:24px 32px;margin-top:20px}
+  .empty .sec-head h3{color:var(--mist)}
+  .empty .num{background:transparent;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);color:var(--mist)}
+  .empty p{margin:0;font-size:.94rem;max-width:58ch}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+  footer{border-top:1px solid var(--rule);padding:26px 0 46px}
+  .foot{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mist);
+    display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+  .fade{animation:rise .42s cubic-bezier(.2,.7,.3,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (max-width:820px){
+    .topbar{grid-template-columns:1fr;padding:24px 22px}
+    .cols{grid-template-columns:1fr}
+    .strip{grid-template-columns:1fr;gap:16px}
+    .capture{align-items:flex-start}
+    .sec{padding:24px 22px 26px}
+    .wrap{padding:0 18px}
+    .strip::before{left:-18px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<meta name="robots" content="noindex" />
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TEAL="#3b8ea5", SLATE="#4a7c80", AMBER="#dd9c36", NAVY="#1b2559";
+const SECMETA=[
+  {n:1,label:"Definition of Breakout Area",color:NAVY},
+  {n:2,label:"Discussion Points",color:TEAL},
+  {n:3,label:"Conclusion of Discussion",color:SLATE},
+  {n:4,label:"Next Steps",color:AMBER}
+];
+
+const BREAKOUTS=[
+{
+  id:"counter-uas",
+  title:"Anti-Autonomy / Counter UAS",
+  accent:"#3b8ea5",
+  champion:"Alex Von Moll",
+  participants:["Mike Bolender","David Casbeer","Cammy Peterson","Satyanarayana Manyam","Artur Wolek","Raul Santos","Jaylen Guerrero","Seth Johnson"],
+  gist:"No single solution. The group landed on a layered, mobile, heterogeneous force mix, with AI as the enabler for sensor fusion and task allocation.",
+  sections:[
+    {n:1,blocks:[{items:["Focusing on countering and defending against autonomy on platforms: air, space, land and sea."]}]},
+    {n:2,blocks:[{items:[
+      "<b>Types of defense:</b> preventative, active, retro",
+      "<b>Methods of defense:</b> kinetic, directed energy (DE), jamming",
+      "<b>Operational:</b> when and where to protect",
+      "<b>Detection methodologies:</b> radar, acoustic, multi-INT fusion",
+      "<b>Logistics:</b> resource and tactical asset allocation"
+    ]}]},
+    {n:3,blocks:[
+      {h:"Key findings and consensus",items:["<b>No single solution.</b> Layered, mobile, and heterogeneous force mix required. AI acts as core enabler for sensor fusion and task allocation. Cost profile must match threats."]},
+      {h:"Open questions",items:["<b>Intent and coordination.</b> How to infer dynamic intent in real time. Managing response across civilian, municipal, and military jurisdictions."]},
+      {h:"Risks, gaps, and recommendations",items:["<b>TRL and testing.</b> Western regulatory friction slows development. Need faster testing and continuous reverse-engineering of threats."]}
+    ]},
+    {n:4,blocks:[
+      {h:"Follow-up deliverables",items:[
+        "<b>Digital twin and sim:</b> build standard simulator environments to benchmark bio-inspired and auction algorithms against massive swarms.",
+        "<b>Regulatory sandboxes:</b> policy proposal for streamlined testing environments.",
+        "<b>Multi-INT framework:</b> standards for low-cost acoustic, optical, and radar arrays."
+      ]},
+      {h:"Items to elevate to the full group",items:[
+        "<b>Benchmark challenge:</b> push the swarm defense problem as an official AIAA benchmark.",
+        "<b>Prototyping framework:</b> advocate for fast-track flight evaluations and feedback."
+      ]}
+    ]}
+  ]
+},
+{
+  id:"ai-pnt",
+  title:"AI and Navigation (PNT)",
+  accent:"#dd9c36",
+  champion:null,
+  participants:["Hever","Raj","Travis","Grant","Jay"],
+  gist:"AI's clearest role is dynamic sensor selection with built-in integrity monitoring, plus hybrid methods that generalize where models fall short.",
+  sections:[
+    {n:1,blocks:[{items:[
+      "Consensus on the meaning of the breakout topic",
+      "Define the area and goals",
+      "How can AI assist with a more robust, secure PNT system"
+    ]}]},
+    {n:2,blocks:[{items:[
+      "GPS",
+      "Alt-PNT (magnetic, vision)",
+      "Impact of imperfect or faulty PNT",
+      "Where should we use AI in PNT",
+      "Assured navigation",
+      "Will AI be able to reduce the cost of high precision maps",
+      "Collaborative navigation",
+      "Signals of opportunity"
+    ]}]},
+    {n:3,blocks:[{items:[
+      "AI to dynamically select sensors, with built-in integrity monitoring",
+      "Hybrid approaches, using AI for generalization",
+      "Calibration and tuning",
+      "Generate synthetic data"
+    ]}]},
+    {n:4,blocks:[{items:[
+      "Invited sessions on AI and PNT, and AI-aided navigation",
+      "Workshop panels",
+      "Tutorials",
+      "Liaison with ION"
+    ]}]}
+  ]
+},
+{
+  id:"ai-workforce",
+  title:"AI's Impact on the Workforce",
+  accent:"#4a7c80",
+  champion:"Isaac",
+  participants:["Jim Punika","Justin","Tim","Andres Fernandez","Wes","Septarshi","Greg Roth","Alan Aguilar"],
+  gist:"Responsibility for AI outcomes sits with the human user. Peer review and oversight stay essential, and no standard yet exists for disclosing AI use.",
+  sections:[
+    {n:1,blocks:[{items:[
+      "Prepare both new and existing engineers to responsibly leverage AI",
+      "Define what proper use of AI looks like",
+      "Scope spans technical, educational, and ethical or regulatory issues"
+    ]}]},
+    {n:2,blocks:[{items:[
+      "Training, certification, and assessment of AI competency",
+      "Overconfidence in AI outputs can be catastrophic",
+      "Can AI-generated code meet aerospace compliance standards?",
+      "The human, not the AI tool, is responsible for outcomes"
+    ]}]},
+    {n:3,blocks:[{items:[
+      "Responsibility for AI outcomes lies with the human user",
+      "Peer review and human oversight remain essential",
+      "Open question: how do we certify AI competency?",
+      "Gap: no standard exists for disclosing AI use"
+    ]}]},
+    {n:4,blocks:[{items:[
+      "Draft a position or white paper highlighting the key issues",
+      "Clarify what does and does not need to be taught to students",
+      "Assess AIAA and AAAI gaps in AI usage guidance",
+      "Define ethical use and disclosure requirements"
+    ]}]}
+  ]
+},
+{
+  id:"human-automation-teaming",
+  title:"Human-Automation Teaming",
+  accent:"#2a3670",
+  champion:"Laura Humphrey",
+  participants:["Mauricio Castillo-Effen","Huy T Tran","Junfei Xie","Eduar Cabera Gaspar","Alexander Demagall","Cat McGhan","Danny Selva","Peter"],
+  gist:"LLMs are a paradigm shift for the field. The open question is whether they help or hurt human performance, and how much of that depends on the individual user.",
+  sections:[
+    {n:1,blocks:[
+      {h:"Consensus on the meaning of the topic",items:[
+        "The relationship between humans and automation",
+        "The allocation of roles, design of interfaces, and modes of interaction between humans and systems",
+        "The role of trust"
+      ]},
+      {h:"Area and goals",items:[
+        "How to effectively combine human and automated capabilities to optimize the joint system",
+        "How to define good metrics to measure the success of this combined system"
+      ]}
+    ]},
+    {n:2,blocks:[{h:"Main themes and technical issues raised",items:[
+      "<b>Human-autonomy synergy and trust:</b> how can humans and autonomy mutually support each other. Autonomy developers have an obligation to clearly characterize performance, confidence levels, and known hazards of an autonomous system. Human users have an obligation to acknowledge and respond to those hazards.",
+      "<b>LLM limitations and explainability:</b> LLMs lack accurate traceability and repeatability, and sycophancy is a concern. Unlike older ML models with explicit cost functions, it is difficult to accurately direct LLMs on priorities, trade-offs, and short-term versus long-term goals.",
+      "<b>Cybersecurity and privacy:</b> LLMs introduce new exploit vectors. Users blindly click through permissions, LLMs fail to accurately explain what they are doing, what information they retain is ambiguous, and simple errors in automated systems grant erroneous access to data.",
+      "<b>Impact on the human worker:</b> concerns about mental exhaustion from high volumes of autonomy outputs, loss of human skill over time, and whether automating tasks lowers the joy of the job, which could lower performance. Conversely, there is a fear of falling behind by not using LLMs.",
+      "<b>Interaction design and expertise:</b> human expertise is still vital to verify LLM correctness, such as checking generated code, comments, and unit tests. Attitudes range from under-trust (disuse) to dangerous over-trust (misuse). The group debated better interaction designs, including knowledge checks, feedback on how well suggestions worked, and reducing excessive positive reinforcement.",
+      "<b>Training data and innovation:</b> trust in training data is an issue, with stale data and missing edge cases. LLMs are good at adjacent solutions but struggle to create truly new ones. Raising temperature increases novelty but also hallucination risk. Rapid upgrades to autonomy might fail to match the human's mental model."
+    ]}]},
+    {n:3,blocks:[
+      {h:"Key findings and consensus",items:["LLMs are a paradigm shift in human-automation teaming."]},
+      {h:"Open questions and unresolved items",items:[
+        "Do LLMs ultimately help or hurt human performance, and is that outcome dependent on the specific user?",
+        "What human skills will remain relevant in an LLM-integrated future?",
+        "Should LLMs adapt to their users? If so, in what situations is this appropriate, and how does it affect human-AI co-learning?"
+      ]},
+      {h:"Risks, gaps, and recommendations",items:[
+        "<b>Risks:</b> loss of technical and social interaction skills, loss of innovation, cybersecurity concerns, undertrust of beneficial tools, and overtrust. Anthropomorphizing LLMs presents severe risks, including vulnerability to scammers, psychological dependence, and the introduction of social biases into human-automation interactions.",
+        "<b>Gaps:</b> current systems lack transparency, traceability, accurate explainability, and guaranteed correctness. Long-term psychological and operational effects on human users are unknown.",
+        "<b>Recommendations:</b> use known datasets, conduct deeper studies into the psychological effects of LLMs, and run pilot studies to accurately measure system safety and performance."
+      ]}
+    ]}
+  ]
+}
+];
+
+const byId=id=>BREAKOUTS.find(b=>b.id===id);
+const has=(b,n)=>b.sections.some(s=>s.n===n);
+
+function head(){
+  return `<header class="masthead"><div class="wrap">
+    <div class="brandline">
+      <span>2026 ISTC Workshop</span><span class="dot">/</span>
+      <span>Dayton, Ohio</span><span class="dot">/</span>
+      <span>August 12-13, 2026</span>
+    </div>
+    <h1>Breakout<span class="thin">Results</span></h1>
+    <p class="lede">Four groups met, scoped their area, and recorded what the room agreed on, what it could not settle, and what happens next. Open a breakout to read its notes.</p>
+  </div></header>`;
+}
+
+function indexView(){
+  const rows=BREAKOUTS.map(b=>{
+    const cells=SECMETA.map(s=>`<span class="cell${has(b,s.n)?"":" off"}"></span>`).join("");
+    const captured=SECMETA.filter(s=>has(b,s.n)).length;
+    const roster=(b.champion?`Champion <b>${b.champion}</b> &nbsp;/&nbsp; `:"")+`<b>${b.participants.length}</b> participants`;
+    return `<a class="strip" href="#/${b.id}" style="--accent:${b.accent}">
+      <div>
+        <h2>${b.title}</h2>
+        <div class="meta">${roster}</div>
+        <p class="gist">${b.gist}</p>
+      </div>
+      <div class="capture">
+        <span class="cap-label">Sections captured ${captured}/4</span>
+        <span class="cells">${cells}</span>
+      </div>
+    </a>`;
+  }).join("");
+  return head()+`<main class="board fade"><div class="wrap">
+    <div class="board-head"><span>Breakout topics</span><span>Definition / Discussion / Conclusion / Next steps</span></div>
+    ${rows}
+  </div></main>`+foot();
+}
+
+function sectionHTML(b,meta){
+  const sec=b.sections.find(s=>s.n===meta.n);
+  if(!sec){
+    return `<section class="sec empty"><div class="sec-head">
+      <span class="num">${meta.n}</span><h3>${meta.label}</h3></div>
+      <p>Not captured. This group did not record next steps on its slides. Anything decided here still needs to be collected from the breakout champion.</p>
+    </section>`;
+  }
+  const blocks=sec.blocks.map(bl=>
+    `<div class="blk">${bl.h?`<h4>${bl.h}</h4>`:""}<ul>${bl.items.map(i=>`<li>${i}</li>`).join("")}</ul></div>`
+  ).join("");
+  return `<section class="sec" style="--accent:${meta.color};--accent-ink:${meta.color}">
+    <div class="sec-head"><span class="num" style="background:${meta.color}">${meta.n}</span><h3>${meta.label}</h3></div>
+    ${blocks}
+  </section>`;
+}
+
+function detailView(b){
+  return `<main class="fade" style="--accent:${b.accent}"><div class="wrap">
+    <a class="back" href="#/">&larr; All breakouts</a>
+    <div class="topbar">
+      <h1>${b.title}</h1>
+      <div class="roster">
+        <span class="rl">Breakout champion</span><span>${b.champion||"Not listed"}</span>
+        <div class="grp"><span class="rl">Participants</span><span>${b.participants.join(", ")}</span></div>
+      </div>
+    </div>
+    <div class="sections">
+      ${sectionHTML(b,SECMETA[0])}
+      <div class="cols">${sectionHTML(b,SECMETA[2])}${sectionHTML(b,SECMETA[3])}</div>
+      ${sectionHTML(b,SECMETA[1])}
+    </div>
+  </div></main>`+foot();
+}
+
+function foot(){
+  return `<footer><div class="wrap"><div class="foot">
+    <span>2026 ISTC Workshop &nbsp;/&nbsp; AIAA Intelligent Systems Technical Committee</span>
+    <span>Breakout notes as recorded by each group</span>
+  </div></div></footer>`;
+}
+
+function render(){
+  const id=location.hash.replace(/^#\/?/,"").trim();
+  const b=id?byId(id):null;
+  document.getElementById("app").innerHTML=b?detailView(b):indexView();
+  document.title=b?`${b.title} | 2026 ISTC Workshop`:"Breakout Results | 2026 ISTC Workshop";
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",render);
+render();
+</script>
+</body>
+</html>
